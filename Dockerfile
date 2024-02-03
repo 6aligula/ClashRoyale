@@ -1,21 +1,13 @@
-# Usar la imagen de SDK para construir el código
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+# Etapa de compilación
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
-# Copiar los archivos .cs y .csproj del proyecto al contenedor
-COPY *.cs ./
-COPY *.csproj ./
-
+# Copiar csproj y restaurar las dependencias
+COPY ./*.sln ./
+COPY ./P1ClashOfRoyale/*.csproj ./P1ClashOfRoyale/
 RUN dotnet restore
 
-# Construir la aplicación
-RUN dotnet publish -c Release -o out
+# Copiar el resto de los archivos y construir
+COPY . ./
 
-# Generar la imagen de runtime
-FROM mcr.microsoft.com/dotnet/sdk:6.0
-WORKDIR /app
-COPY --from=build-env /app/out .
-
-# Cambiar el ENTRYPOINT para usar dotnet watch
-# ENTRYPOINT ["dotnet", "watch", "run"]
-ENTRYPOINT ["dotnet", "run"]
+# No se necesita ENTRYPOINT para desarrollo; se usará docker-compose.yml

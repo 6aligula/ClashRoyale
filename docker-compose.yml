@@ -4,7 +4,8 @@ services:
     build: .
     volumes:
       - .:/app
-    stdin_open: true  # equivalente a -i en docker run
-    tty: true         # equivalente a -t en docker run
-    #command: dotnet watch run --project Pau.csproj
-    command: dotnet run --project Pau.csproj
+      - /app/bin
+      - /app/obj
+    stdin_open: true
+    tty: true
+    command: dotnet watch run --project P1ClashOfRoyale/P1ClashOfRoyale.csproj
