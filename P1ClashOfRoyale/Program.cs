@@ -23,7 +23,7 @@ namespace P1ClashOfRoyale
                 CreateEnemic();
                 Update();
                 Print();
-                Thread.Sleep(700);//miliseconds
+                Thread.Sleep(1000);//miliseconds
                 if (Console.KeyAvailable)
                     UserInput();
             }
@@ -31,53 +31,92 @@ namespace P1ClashOfRoyale
 
         private static void Init()
         {
-            torresEnemigues = new List<Torre>() { };
-            myTowers = new List<Torre>() {};
-            enemics = new List<Enemic>() {};
-            myMinions = new List<Minion>() { };
+            torresEnemigues = new List<Torre>();
+            myTowers = new List<Torre>();
 
-        /* Implementació 5  - Passos 1-6
-         * Crea les 6 torres dins dels corresponents llistats
-         */
+            /* Implementació 5  - Passos 1-6
+             * Crea les 6 torres dins dels corresponents llistats
+             */
+            // Creem i afegim les torres aliades
+            myTowers.Add(new Torre(10, 2));
+            myTowers.Add(new Torre(11, 4));
+            myTowers.Add(new Torre(10, 6));
 
-        /* Implementació 9 - Pas 1
-         * Instancia la llista buida myMinions
-         */
+            // Creem i afegim les torres enemigues
+            torresEnemigues.Add(new Torre(2, 2));
+            torresEnemigues.Add(new Torre(1, 4));
+            torresEnemigues.Add(new Torre(2, 6));
 
+            /* Implementació 9 - Pas 1
+             * Instancia la llista buida myMinions
+             */
+            myMinions = new List<Minion>();
 
-        /* Implementació 13 - Pas 1
-         * Instancia la llista buida enemics
-         */
+            /* Implementació 13 - Pas 1
+             * Instancia la llista buida enemics
+             */
+            enemics = new List<Enemic>();
 
-    }
+        }
 
-    private static bool Finish()
+        private static bool Finish()
         {
             /*
              * implementació 6
              * Si una de les dues llistes de torres és buida, 
              * s'acaba el joc.
              */
+            if (torresEnemigues.Count == 0)
+            {
+                Console.WriteLine("Has guanyat la partida!");
+                return true;
+            }
+            else if (myTowers.Count == 0)
+            {
+                Console.WriteLine("Has perdut la partida.");
+                return true;
+            }
             return false;
         }
 
         private static void Print()
         {
+            Console.Clear(); // Limpia la consola antes de imprimir el nuevo estado
+            
             Arena.Print();
-
+            
             /* Implementació 5 - Passos 7-8
              * mostra les torres, necessitaràs un bucle per cada llista
              */
+            // Mostrem les torres aliades
+            foreach (Torre t in myTowers)
+            {
+                t.Print();
+            }
+
+            // Mostrem les torres enemigues
+            foreach (Torre t in torresEnemigues)
+            {
+                t.Print();
+            }
 
             /* Implementació 9 - Pas 2
              * mostra els minions, fes un bucle que cridi el mètode print de cada objecte.
              */
+            foreach (Minion minion in myMinions)
+            {
+                minion.Print();
+            }
 
             /* Implementació 13 - Pas 2
              * mostra els enemics, fes un bucle que cridi el mètode print de cada objecte.
              */
+            foreach (Enemic enemic in enemics)
+            {
+                enemic.Print();
+            }
 
-
+            //Console.SetCursorPosition(Arena.nCol + 1, Arena.nRow);
             Console.SetCursorPosition(Arena.nCol, Arena.nRow);
             Console.WriteLine("Tria una posició per inserir un nou minion, per exemple 9,2");
         }
@@ -88,6 +127,23 @@ namespace P1ClashOfRoyale
              * comprovem que sigui correcte
              * creem un minion i el inserim al llistat
              */
+            string input = Console.ReadLine();
+            string[] parts = input.Split(',');
+            if (parts.Length == 2 && int.TryParse(parts[0], out int row) && int.TryParse(parts[1], out int col) && Arena.CheckPosition(row, col))
+            {
+                // Comprovar si la posició donada és correcte dins del nostre tauler
+                if (Arena.CheckPosition(row, col))
+                {
+                    // Si és correcte, crea un minion a la posició donada i afegeix al llistat myMinions
+                    myMinions.Add(new Minion(row, col));
+                }
+                else
+                {
+                    // Si no és correcte, mostrar un missatge d'error
+                    Console.WriteLine("Posició no vàlida, intenta-ho de nou.");
+                    //Console.ReadKey(true);
+                }
+            }
         }
 
         private static void CreateEnemic()
@@ -101,6 +157,15 @@ namespace P1ClashOfRoyale
              * Si surt 1, crearem un enemic a una posició a l'atzar
              * assignem una posició de la part superior del tauler
              */
+            if (random.Next(1, 7) == 1) // Hay una probabilidad de 1 en 6 de crear un enemigo
+            {
+                int row = 1; // Enemigos aparecen en la primera fila
+                int col = random.Next(1, Arena.nCol - 1); // Posición aleatoria en la columna
+                if (Arena.CheckPosition(row, col))
+                {
+                    enemics.Add(new Enemic(row, col));
+                }
+            }
 
         }
 

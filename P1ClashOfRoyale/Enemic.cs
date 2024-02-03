@@ -24,6 +24,10 @@ namespace P1ClashOfRoyale
             /* Implementació 11
              * imprimeix per pantalla una e a la posició col,row
              */
+            Console.SetCursorPosition(col, row);
+            Console.ForegroundColor = ConsoleColor.Red; // Seleccionem un color diferent per l'enemic
+            Console.Write("e");
+            Console.ResetColor(); // Tornem al color per defecte
         }
 
         public void Move()
@@ -33,6 +37,27 @@ namespace P1ClashOfRoyale
              * o en direcció a un pont, 
              * o en direcció a la torre del mig
              */
+            // Comprovem si la posició de sota està lliure
+            if (Arena.CheckPosition(row + 1, col))
+            {
+                row++; // Movem l'enemic cap avall
+            }
+            else
+            {
+                // Si està a la part superior, busca un pont
+                if (row <= 1)
+                {
+                    // Movem l'enemic cap al pont més proper
+                    if (Arena.CheckPosition(row, col - 1)) col--;
+                    else if (Arena.CheckPosition(row, col + 1)) col++;
+                }
+                // Si està a l'última fila, anem cap a la torre del mig
+                else if (row == Arena.nRow - 1)
+                {
+                    if (col < Arena.nCol / 2 && Arena.CheckPosition(row, col + 1)) col++;
+                    else if (col > Arena.nCol / 2 && Arena.CheckPosition(row, col - 1)) col--;
+                }
+            }
 
         }
 

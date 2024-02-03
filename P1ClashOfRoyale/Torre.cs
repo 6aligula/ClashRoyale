@@ -39,7 +39,13 @@ namespace P1ClashOfRoyale
              * aquest mètode comprova si la torre és atacada
              * i disminueix la seva vida.
              */
-            return false;
+            // Utilitzem 'this' per referir-nos als atributs de l'instància actual
+            if (this.row == row && this.col == col)
+            {
+                this.life--; // Disminuir la vida en 1
+                return true; // Retornar true per indicar que la torre ha estat atacada
+            }
+            return false; // Retornar false si no hi ha coincidència de posició
         }
 
         public bool IsAlive()
@@ -47,7 +53,7 @@ namespace P1ClashOfRoyale
             /* Implementació 4
              * aquest mètode comprova si la torre s'ha enfonsat 
              */
-            return true;
+            return this.life > 0; // Retornar true si la vida és més gran que 0
         }
     }
 }
