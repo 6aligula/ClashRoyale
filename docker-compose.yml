@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  crashroyale:
+    build: .
+    volumes:
+      - .:/app
+    stdin_open: true  # equivalente a -i en docker run
+    tty: true         # equivalente a -t en docker run
+    #command: dotnet watch run --project Pau.csproj
+    command: dotnet run --project Pau.csproj
