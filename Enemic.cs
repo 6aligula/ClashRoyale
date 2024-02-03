@@ -45,17 +45,22 @@ namespace P1ClashOfRoyale
             else
             {
                 // Si està a la part superior, busca un pont
-                if (row <= 1)
+                if (row == Arena.nRow - 8)
                 {
-                    // Movem l'enemic cap al pont més proper
-                    if (Arena.CheckPosition(row, col - 1)) col--;
-                    else if (Arena.CheckPosition(row, col + 1)) col++;
+                    // Mueve el enemigo hacia el puente más cercano
+                    if (col < 2 && Arena.CheckPosition(row, col + 1)) col++; // Hacia el puente de la derecha
+                    else if (col > 6 && Arena.CheckPosition(row, col - 1)) col--; // Hacia el puente de la izquierda
+                    else if (col >= 2 && col <= 6)
+                    {
+                        if (col - 2 <= 6 - col && Arena.CheckPosition(row, col - 1)) col--; // Puente columna 2 está más cerca o igual distancia
+                        else if (col - 2 > 6 - col && Arena.CheckPosition(row, col + 1)) col++; // Puente columna 6 está más cerca
+                    }
                 }
-                // Si està a l'última fila, anem cap a la torre del mig
-                else if (row == Arena.nRow - 1)
+                // Si el enemigo está en la última fila antes de las torres, se dirige hacia la torre del medio
+                else if (row == Arena.nRow - 2)
                 {
-                    if (col < Arena.nCol / 2 && Arena.CheckPosition(row, col + 1)) col++;
-                    else if (col > Arena.nCol / 2 && Arena.CheckPosition(row, col - 1)) col--;
+                    if (col < (Arena.nCol - 1) / 2 && Arena.CheckPosition(row, col + 1)) col++; // Hacia la derecha
+                    else if (col > (Arena.nCol - 1) / 2 && Arena.CheckPosition(row, col - 1)) col--; // Hacia la izquierda
                 }
             }
 

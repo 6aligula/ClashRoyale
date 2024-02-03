@@ -1,0 +1,13 @@
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\bin\Debug\netcoreapp3.1\P1ClashOfRoyale.exe
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\bin\Debug\netcoreapp3.1\P1ClashOfRoyale.deps.json
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\bin\Debug\netcoreapp3.1\P1ClashOfRoyale.runtimeconfig.json
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\bin\Debug\netcoreapp3.1\P1ClashOfRoyale.runtimeconfig.dev.json
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\bin\Debug\netcoreapp3.1\P1ClashOfRoyale.dll
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\bin\Debug\netcoreapp3.1\P1ClashOfRoyale.pdb
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\obj\Debug\netcoreapp3.1\P1ClashOfRoyale.csproj.AssemblyReference.cache
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\obj\Debug\netcoreapp3.1\P1ClashOfRoyale.AssemblyInfoInputs.cache
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\obj\Debug\netcoreapp3.1\P1ClashOfRoyale.AssemblyInfo.cs
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\obj\Debug\netcoreapp3.1\P1ClashOfRoyale.csproj.CoreCompileInputs.cache
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\obj\Debug\netcoreapp3.1\P1ClashOfRoyale.dll
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\obj\Debug\netcoreapp3.1\P1ClashOfRoyale.pdb
+C:\Users\vinic\source\repos2\P1ClashOfRoyale\obj\Debug\netcoreapp3.1\P1ClashOfRoyale.genruntimeconfig.cache

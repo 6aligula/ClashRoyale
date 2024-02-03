@@ -20,10 +20,10 @@ namespace P1ClashOfRoyale
             Print();
             while (!Finish())
             {
-                //CreateEnemic();
+                CreateEnemic();
                 Update();
                 Print();
-                Thread.Sleep(4000);//miliseconds
+                Thread.Sleep(300);//miliseconds
                 if (Console.KeyAvailable)
                     UserInput();
             }
@@ -127,10 +127,10 @@ namespace P1ClashOfRoyale
              * creem un minion i el inserim al llistat
              */
             string input = Console.ReadLine();
-            Console.WriteLine("Input: " + input);
+            //Console.WriteLine("Input: " + input);
             string[] parts = input.Split(',');
             
-            Console.WriteLine("parte1 " + parts[0] + "parte2 " + parts[1]);
+            //Console.WriteLine("parte1 " + parts[0] + "parte2 " + parts[1]);
             if (parts.Length == 2 && int.TryParse(parts[0], out int row) && int.TryParse(parts[1], out int col) && Arena.CheckPosition(row, col))
             {
                 // Comprovar si la posició donada és correcte dins del nostre tauler
@@ -138,7 +138,7 @@ namespace P1ClashOfRoyale
                 {
                     // Si és correcte, crea un minion a la posició donada i afegeix al llistat myMinions
                     myMinions.Add(new Minion(row, col));
-                    Console.WriteLine("Minion añadido en posición: " + row + "," + col); // Confirma que se añadió
+                    //Console.WriteLine("Minion añadido en posición: " + row + "," + col); // Confirma que se añadió
 
                 }
                 else
